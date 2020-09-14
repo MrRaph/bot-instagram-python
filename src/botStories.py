@@ -57,6 +57,7 @@ def functionStories(mySystem):
         chrome_options.add_argument(f'user-agent={user_agent}')
         
         driver = webdriver.Chrome(executable_path='/usr/bin/chromedriver',   options=chrome_options)
+        print('loaded chrome')
     except:
         try:
             driver = webdriver.Firefox(executable_path=f'{way}\geckodriver')
