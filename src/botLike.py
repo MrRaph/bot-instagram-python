@@ -12,6 +12,7 @@ import random
 from time import sleep
 from selenium import webdriver
 from selenium.webdriver.common.keys import Keys
+from selenium.webdriver.chrome.options import Options
 
 def functionLike(mySystem):
 
@@ -54,7 +55,14 @@ def functionLike(mySystem):
 
     # load browser drive in to var and open
     try:
-        driver = webdriver.Firefox(executable_path=f'{way}/geckodriver') # geckodriver path https://github.com/mozilla/geckodriver/releases/tag/v0.26.0
+        #driver = webdriver.Firefox(executable_path=f'{way}/geckodriver') # geckodriver path https://github.com/mozilla/geckodriver/releases/tag/v0.26.0
+        user_agent = 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/60.0.3112.50 Safari/537.36'
+        chrome_options = Options()  
+        chrome_options.add_argument("--headless")  
+        chrome_options.binary_location = '/usr/bin/google-chrome'
+        chrome_options.add_argument(f'user-agent={user_agent}')
+        
+        driver = webdriver.Chrome(executable_path='/usr/bin/chromedriver',   options=chrome_options)
     except:
         try:
             driver = webdriver.Firefox(executable_path=f'{way}\geckodriver')
